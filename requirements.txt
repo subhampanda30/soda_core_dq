@@ -1,0 +1,6 @@
+sqlalchemy
+pandas
+pyyaml 
+pymysql 
+psycopg2-binary 
+snowflake-sqlalchemy

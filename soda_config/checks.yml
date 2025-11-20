@@ -1,0 +1,281 @@
+checks for all_jobs_details_scrape:
+- row_count > 0:
+    name: Table all_jobs_details_scrape should not be empty
+- change for row_count between -20% and 50%:
+    name: Monitor row count changes in all_jobs_details_scrape
+- missing_percent(job_id) < 25%:
+    name: Missing values in job_id below threshold
+- duplicate_percent(job_id) < 5%:
+    name: Check uniqueness of job_id
+- min_length(job_id) >= 4:
+    name: Minimum length check for job_id
+- max_length(job_id) <= 13:
+    name: Maximum length check for job_id
+- invalid_percent(job_id) < 5%:
+    name: Validate phone format in job_id
+    valid format: phone number
+- missing_percent(id) < 25%:
+    name: Missing values in id below threshold
+- duplicate_percent(id) < 5%:
+    name: Check uniqueness of id
+- invalid_count(id) = 0:
+    name: Validate id range
+    valid min: 124862285.7
+    valid max: 189241520.60000002
+- anomaly detection for id:
+    name: Detect anomalies in id
+- missing_percent(typeid) < 25%:
+    name: Missing values in typeid below threshold
+- invalid_count(typeid) = 0:
+    name: Validate typeid range
+    valid min: 288558.0
+    valid max: 404324.80000000005
+- anomaly detection for typeid:
+    name: Detect anomalies in typeid
+- missing_percent(typename) < 25%:
+    name: Missing values in typename below threshold
+- min_length(typename) >= 4:
+    name: Minimum length check for typename
+- max_length(typename) <= 76:
+    name: Maximum length check for typename
+- missing_percent(conid) < 25%:
+    name: Missing values in conid below threshold
+- invalid_count(conid) = 0:
+    name: Validate conid range
+    valid min: 35156934.9
+    valid max: 54224252.50000001
+- anomaly detection for conid:
+    name: Detect anomalies in conid
+- missing_percent(conname) < 25%:
+    name: Missing values in conname below threshold
+- min_length(conname) >= 2:
+    name: Minimum length check for conname
+- max_length(conname) <= 75:
+    name: Maximum length check for conname
+- missing_percent(const) < 25%:
+    name: Missing values in const below threshold
+- min_length(const) >= 4:
+    name: Minimum length check for const
+- max_length(const) <= 150:
+    name: Maximum length check for const
+- missing_percent(conpc) < 25%:
+    name: Missing values in conpc below threshold
+- min_length(conpc) >= 1:
+    name: Minimum length check for conpc
+- max_length(conpc) <= 12:
+    name: Maximum length check for conpc
+- missing_percent(contw) < 25%:
+    name: Missing values in contw below threshold
+- min_length(contw) >= 2:
+    name: Minimum length check for contw
+- max_length(contw) <= 28:
+    name: Maximum length check for contw
+- missing_percent(conadd) < 25%:
+    name: Missing values in conadd below threshold
+- min_length(conadd) >= 6:
+    name: Minimum length check for conadd
+- max_length(conadd) <= 178:
+    name: Maximum length check for conadd
+- min_length(conphone) >= 5:
+    name: Minimum length check for conphone
+- max_length(conphone) <= 22:
+    name: Maximum length check for conphone
+- invalid_percent(conphone) < 5%:
+    name: Validate phone format in conphone
+    valid format: phone number
+- min_length(conemail) >= 7:
+    name: Minimum length check for conemail
+- max_length(conemail) <= 60:
+    name: Maximum length check for conemail
+- invalid_count(conemail) = 0:
+    name: Validate email format in conemail
+    valid format: email
+- missing_percent(status) < 25%:
+    name: Missing values in status below threshold
+- invalid_count(status) = 0:
+    name: Validate status range
+    valid min: 0.9
+    valid max: 14.3
+- anomaly detection for status:
+    name: Detect anomalies in status
+- invalid_count(status) = 0:
+    name: Validate categorical values in status
+    valid values:
+    - '12'
+    - '13'
+    - '10'
+    - '7'
+    - '6'
+    - '11'
+    - '4'
+    - '2'
+    - '1'
+    - '8'
+    - '3'
+- missing_percent(stdate) < 25%:
+    name: Missing values in stdate below threshold
+- min_length(stdate) >= 8:
+    name: Minimum length check for stdate
+- max_length(stdate) <= 24:
+    name: Maximum length check for stdate
+- missing_percent(resid) < 25%:
+    name: Missing values in resid below threshold
+- invalid_count(resid) = 0:
+    name: Validate resid range
+    valid min: 349680.60000000003
+    valid max: 484469.7
+- anomaly detection for resid:
+    name: Detect anomalies in resid
+- missing_percent(resname) < 25%:
+    name: Missing values in resname below threshold
+- min_length(resname) >= 4:
+    name: Minimum length check for resname
+- max_length(resname) <= 22:
+    name: Maximum length check for resname
+- missing_percent(start) < 25%:
+    name: Missing values in start below threshold
+- min_length(start) >= 5:
+    name: Minimum length check for start
+- max_length(start) <= 15:
+    name: Maximum length check for start
+- missing_percent(time) < 25%:
+    name: Missing values in time below threshold
+- min_length(time) >= 2:
+    name: Minimum length check for time
+- max_length(time) <= 7:
+    name: Maximum length check for time
+- missing_percent(dur) < 25%:
+    name: Missing values in dur below threshold
+- missing_percent(sch) < 25%:
+    name: Missing values in sch below threshold
+- invalid_count(sch) = 0:
+    name: Validate categorical values in sch
+    valid values:
+    - 'True'
+- missing_percent(comp) < 25%:
+    name: Missing values in comp below threshold
+- invalid_count(comp) = 0:
+    name: Validate categorical values in comp
+    valid values:
+    - 'True'
+- missing_percent(note) < 25%:
+    name: Missing values in note below threshold
+- min_length(note) >= 1:
+    name: Minimum length check for note
+- max_length(note) <= 1497:
+    name: Maximum length check for note
+- min_length(fields) >= 7:
+    name: Minimum length check for fields
+- max_length(fields) <= 2979:
+    name: Maximum length check for fields
+- invalid_count(tag) = 0:
+    name: Validate tag range
+    valid min: 202114.80000000002
+    valid max: 287986.60000000003
+- anomaly detection for tag:
+    name: Detect anomalies in tag
+- missing_percent(jobstartdate) < 25%:
+    name: Missing values in jobstartdate below threshold
+- min_length(jobstartdate) >= 5:
+    name: Minimum length check for jobstartdate
+- max_length(jobstartdate) <= 15:
+    name: Maximum length check for jobstartdate
+- invalid_percent(jobstartdate) < 5%:
+    name: Validate phone format in jobstartdate
+    valid format: phone number
+- missing_percent(jobstartdevicedate) < 25%:
+    name: Missing values in jobstartdevicedate below threshold
+- min_length(jobstartdevicedate) >= 5:
+    name: Minimum length check for jobstartdevicedate
+- max_length(jobstartdevicedate) <= 15:
+    name: Maximum length check for jobstartdevicedate
+- invalid_percent(jobstartdevicedate) < 5%:
+    name: Validate phone format in jobstartdevicedate
+    valid format: phone number
+- missing_percent(jobcreationdate) < 25%:
+    name: Missing values in jobcreationdate below threshold
+- min_length(jobcreationdate) >= 5:
+    name: Minimum length check for jobcreationdate
+- max_length(jobcreationdate) <= 15:
+    name: Maximum length check for jobcreationdate
+- invalid_percent(jobcreationdate) < 5%:
+    name: Validate phone format in jobcreationdate
+    valid format: phone number
+- min_length(jobduedate) >= 5:
+    name: Minimum length check for jobduedate
+- max_length(jobduedate) <= 15:
+    name: Maximum length check for jobduedate
+- invalid_percent(jobduedate) < 5%:
+    name: Validate phone format in jobduedate
+    valid format: phone number
+- missing_percent(formatteddates) < 25%:
+    name: Missing values in formatteddates below threshold
+- invalid_count(formatteddates) = 0:
+    name: Validate categorical values in formatteddates
+    valid values:
+    - 'True'
+- invalid_count(cat) = 0:
+    name: Validate cat range
+    valid min: 67610.7
+    valid max: 90830.3
+- anomaly detection for cat:
+    name: Detect anomalies in cat
+- invalid_count(cat) = 0:
+    name: Validate categorical values in cat
+    valid values:
+    - '75123.0'
+    - '75124.0'
+    - '77916.0'
+    - '75127.0'
+    - '75130.0'
+    - '75126.0'
+    - '75125.0'
+    - '82573.0'
+- invalid_count(assid) = 0:
+    name: Validate assid range
+    valid min: 207479.7
+    valid max: 271451.4
+- anomaly detection for assid:
+    name: Detect anomalies in assid
+- min_length(assreg) >= 3:
+    name: Minimum length check for assreg
+- max_length(assreg) <= 12:
+    name: Maximum length check for assreg
+- missing_percent(rf) < 25%:
+    name: Missing values in rf below threshold
+- duplicate_percent(rf) < 5%:
+    name: Check uniqueness of rf
+- min_length(rf) >= 1:
+    name: Minimum length check for rf
+- max_length(rf) <= 60:
+    name: Maximum length check for rf
+- missing_percent(po) < 25%:
+    name: Missing values in po below threshold
+- min_length(po) >= 0:
+    name: Minimum length check for po
+- max_length(po) <= 28:
+    name: Maximum length check for po
+- invalid_count(alert) = 0:
+    name: Validate alert range
+    valid min: 4171619.7
+    valid max: 5394763.0
+- anomaly detection for alert:
+    name: Detect anomalies in alert
+- invalid_count(modif) = 0:
+    name: Validate categorical values in modif
+    valid values:
+    - 'True'
+- min_length(duedate) >= 8:
+    name: Minimum length check for duedate
+- max_length(duedate) <= 24:
+    name: Maximum length check for duedate
+- invalid_count(rec) = 0:
+    name: Validate rec range
+    valid min: 86868470.7
+    valid max: 106172575.30000001
+- anomaly detection for rec:
+    name: Detect anomalies in rec
+- invalid_count(rec) = 0:
+    name: Validate categorical values in rec
+    valid values:
+    - '96520523.0'

@@ -1,293 +1,102 @@
 ================================================================================
 DATA DISCOVERY REPORT
-Generated: 2025-11-20 13:36:12
+Generated: 2025-12-17 11:21:46
 ================================================================================
 
 
-TABLE: all_jobs_details_scrape
+TABLE: customer
 --------------------------------------------------------------------------------
-Total Rows: 21773
-Total Columns: 38
+Total Rows: 8
+Total Columns: 11
 Primary Keys: None
-Date Columns: None
+Date Columns: created_at, updated_at
 
 COLUMN DETAILS:
-
-  Column: job_id
-    Type: text
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 21773
-    Pattern Detected: phone
 
   Column: id
     Type: integer
     Nullable: True
     Null %: 0.00%
-    Unique Values: 21773
-    Min: 138735873.0
-    Max: 172037746.0
-    Avg: 159868115.0001837
+    Unique Values: 7
+    Min: 1.0
+    Max: 7.0
+    Avg: 4.125
+    Categorical: Yes (Valid values: 7)
 
-  Column: typeid
-    Type: integer
+  Column: customer_name
+    Type: varchar(255)
+    Nullable: True
+    Null %: 12.50%
+    Unique Values: 6
+    Categorical: Yes (Valid values: 6)
+
+  Column: email
+    Type: varchar(255)
     Nullable: True
     Null %: 0.00%
-    Unique Values: 93
-    Min: 320620.0
-    Max: 367568.0
-    Avg: 343959.9269278464
+    Unique Values: 7
+    Categorical: Yes (Valid values: 7)
 
-  Column: typename
-    Type: text
+  Column: phone
+    Type: varchar(30)
     Nullable: True
     Null %: 0.00%
-    Unique Values: 91
-
-  Column: conid
-    Type: integer
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 7618
-    Min: 39063261.0
-    Max: 49294775.0
-    Avg: 42784267.08028292
-
-  Column: conname
-    Type: text
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 7603
-
-  Column: const
-    Type: text
-    Nullable: True
-    Null %: 0.48%
-    Unique Values: 506
-
-  Column: conpc
-    Type: text
-    Nullable: True
-    Null %: 2.46%
-    Unique Values: 337
-
-  Column: contw
-    Type: text
-    Nullable: True
-    Null %: 2.44%
-    Unique Values: 103
-
-  Column: conadd
-    Type: text
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 432
-
-  Column: conphone
-    Type: text
-    Nullable: True
-    Null %: 27.43%
-    Unique Values: 250
+    Unique Values: 7
+    Categorical: Yes (Valid values: 7)
     Pattern Detected: phone
-
-  Column: conemail
-    Type: text
-    Nullable: True
-    Null %: 10.80%
-    Unique Values: 270
-    Pattern Detected: email
 
   Column: status
+    Type: varchar(50)
+    Nullable: True
+    Null %: 0.00%
+    Unique Values: 5
+    Categorical: Yes (Valid values: 5)
+
+  Column: created_at
+    Type: timestamp
+    Nullable: True
+    Null %: 12.50%
+    Unique Values: 6
+    Categorical: Yes (Valid values: 6)
+
+  Column: updated_at
+    Type: timestamp
+    Nullable: True
+    Null %: 25.00%
+    Unique Values: 5
+    Categorical: Yes (Valid values: 5)
+
+  Column: price_amount
+    Type: numeric(10, 2)
+    Nullable: True
+    Null %: 0.00%
+    Unique Values: 7
+    Min: -10.0
+    Max: 999999.0
+    Avg: 125065.99875
+    Categorical: Yes (Valid values: 7)
+
+  Column: age
     Type: integer
     Nullable: True
-    Null %: 0.00%
-    Unique Values: 11
-    Min: 1.0
-    Max: 13.0
-    Avg: 11.974831212970193
-    Categorical: Yes (Valid values: 11)
+    Null %: 12.50%
+    Unique Values: 6
+    Min: -5.0
+    Max: 150.0
+    Avg: 41.714285714285715
+    Categorical: Yes (Valid values: 6)
 
-  Column: stdate
-    Type: text
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 17688
-
-  Column: resid
-    Type: integer
-    Nullable: True
-    Null %: 0.43%
-    Unique Values: 23
-    Min: 388534.0
-    Max: 440427.0
-    Avg: 392810.6795202952
-    Categorical: Yes (Valid values: 23)
-
-  Column: resname
-    Type: text
-    Nullable: True
-    Null %: 0.43%
-    Unique Values: 23
-    Categorical: Yes (Valid values: 23)
-
-  Column: start
-    Type: text
-    Nullable: True
-    Null %: 0.51%
-    Unique Values: 271
-
-  Column: time
-    Type: text
-    Nullable: True
-    Null %: 0.51%
-    Unique Values: 514
-
-  Column: dur
-    Type: real
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 214
-
-  Column: sch
-    Type: boolean
-    Nullable: True
-    Null %: 0.51%
-    Unique Values: 1
-    Categorical: Yes (Valid values: 1)
-
-  Column: comp
-    Type: boolean
-    Nullable: True
-    Null %: 2.87%
-    Unique Values: 1
-    Categorical: Yes (Valid values: 1)
-
-  Column: note
-    Type: text
-    Nullable: True
-    Null %: 0.74%
-    Unique Values: 4958
-
-  Column: fields
-    Type: text
-    Nullable: True
-    Null %: 83.63%
-    Unique Values: 2297
-
-  Column: tag
-    Type: integer
-    Nullable: True
-    Null %: 39.32%
-    Unique Values: 34
-    Min: 224572.0
-    Max: 261806.0
-    Avg: 236472.29079624583
-    Categorical: Yes (Valid values: 34)
-
-  Column: jobstartdate
-    Type: text
-    Nullable: True
-    Null %: 0.51%
-    Unique Values: 271
-    Pattern Detected: phone
-
-  Column: jobstartdevicedate
-    Type: text
-    Nullable: True
-    Null %: 2.67%
-    Unique Values: 266
-    Pattern Detected: phone
-
-  Column: jobcreationdate
-    Type: text
-    Nullable: True
-    Null %: 0.00%
-    Unique Values: 252
-    Pattern Detected: phone
-
-  Column: jobduedate
-    Type: text
-    Nullable: True
-    Null %: 89.88%
-    Unique Values: 155
-    Pattern Detected: phone
-
-  Column: formatteddates
+  Column: is_deleted
     Type: boolean
     Nullable: True
     Null %: 0.00%
-    Unique Values: 1
-    Categorical: Yes (Valid values: 1)
+    Unique Values: 2
+    Categorical: Yes (Valid values: 2)
 
-  Column: cat
-    Type: integer
+  Column: country_code
+    Type: varchar(10)
     Nullable: True
-    Null %: 11.94%
-    Unique Values: 8
-    Min: 75123.0
-    Max: 82573.0
-    Avg: 75307.10921038907
-    Categorical: Yes (Valid values: 8)
-
-  Column: assid
-    Type: integer
-    Nullable: True
-    Null %: 21.33%
-    Unique Values: 21
-    Min: 230533.0
-    Max: 246774.0
-    Avg: 235478.60544138253
-    Categorical: Yes (Valid values: 21)
-
-  Column: assreg
-    Type: text
-    Nullable: True
-    Null %: 21.33%
-    Unique Values: 21
-    Categorical: Yes (Valid values: 21)
-
-  Column: rf
-    Type: text
-    Nullable: True
-    Null %: 1.04%
-    Unique Values: 21509
-
-  Column: po
-    Type: text
-    Nullable: True
-    Null %: 0.96%
-    Unique Values: 3657
-
-  Column: alert
-    Type: integer
-    Nullable: True
-    Null %: 99.89%
-    Unique Values: 25
-    Min: 4635133.0
-    Max: 4904330.0
-    Avg: 4698504.44
-    Categorical: Yes (Valid values: 25)
-
-  Column: modif
-    Type: boolean
-    Nullable: True
-    Null %: 97.33%
-    Unique Values: 1
-    Categorical: Yes (Valid values: 1)
-
-  Column: duedate
-    Type: text
-    Nullable: True
-    Null %: 89.88%
-    Unique Values: 181
-
-  Column: rec
-    Type: integer
-    Nullable: True
-    Null %: 99.98%
-    Unique Values: 1
-    Min: 96520523.0
-    Max: 96520523.0
-    Avg: 96520523.0
-    Categorical: Yes (Valid values: 1)
+    Null %: 0.00%
+    Unique Values: 4
+    Categorical: Yes (Valid values: 4)
 

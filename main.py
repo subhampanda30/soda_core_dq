@@ -13,18 +13,8 @@ import os
 
 
 class SodaConfigGenerator:
-    """
-    Dynamically generates Soda Core configuration based on data discovery
-    """
     
     def __init__(self, connection_string: str, data_source_name: str = "my_datasource"):
-        """
-        Initialize the generator with database connection
-        
-        Args:
-            connection_string: SQLAlchemy connection string
-            data_source_name: Name for the Soda data source
-        """
         self.engine = create_engine(connection_string)
         self.inspector = inspect(self.engine)
         self.data_source_name = data_source_name
@@ -32,17 +22,6 @@ class SodaConfigGenerator:
         
     def discover_datasets(self, schema: str = None, include_tables: List[str] = None, 
                          exclude_tables: List[str] = None) -> List[str]:
-        """
-        Discover all tables in the database
-        
-        Args:
-            schema: Database schema to scan (optional)
-            include_tables: List of specific tables to include (optional)
-            exclude_tables: List of tables to exclude (optional)
-            
-        Returns:
-            List of table names
-        """
         all_tables = self.inspector.get_table_names(schema=schema)
         
         if include_tables:
@@ -56,19 +35,8 @@ class SodaConfigGenerator:
     
     def profile_table(self, table_name: str, schema: str = None, 
                      sample_size: int = 30000) -> Dict[str, Any]:
-        """
-        Profile a table to discover column types, patterns, and statistics
-        
-        Args:
-            table_name: Name of the table to profile
-            schema: Database schema
-            sample_size: Number of rows to sample for profiling
-            
-        Returns:
-            Dictionary with table metadata and column profiles
-        """
-        print(f"  Profiling table: {table_name}...")
-        
+        print(f"Profiling table: {table_name}...")
+       
         # Get column information
         columns = self.inspector.get_columns(table_name, schema=schema)
         pk_constraint = self.inspector.get_pk_constraint(table_name, schema=schema)
@@ -85,7 +53,7 @@ class SodaConfigGenerator:
             
             # Handle blank tables
             if df.empty:
-                print(f"  ⚠ Warning: {table_name} is empty, skipping detailed profiling")
+                print(f"Warning: {table_name} is empty, skipping detailed profiling")
                 return
         
         # Profile each column
@@ -250,18 +218,8 @@ class SodaConfigGenerator:
     
     def generate_checks_for_table(self, table_metadata: Dict[str, Any], 
                                   strict_mode: bool = False) -> List[Dict[str, Any]]:
-        """
-        Generate appropriate quality checks based on table profile
-        
-        Args:
-            table_metadata: Profiled table metadata
-            strict_mode: If True, generates stricter checks
-            
-        Returns:
-            List of check definitions
-        """
         if table_metadata is None:
-            print(f"  ⚠ Warning: No metadata found for table, skipping checks")
+            print(f"Warning: No metadata found for table, skipping checks")
             return []
         
         checks = []
@@ -445,15 +403,6 @@ class SodaConfigGenerator:
         return checks
     
     def generate_configuration(self, connection_config: Dict[str, str]) -> str:
-        """
-        Generate the Soda configuration.yml content
-        
-        Args:
-            connection_config: Database connection parameters
-            
-        Returns:
-            YAML configuration string
-        """
         config = {
             f'data_source {self.data_source_name}': connection_config
         }
@@ -462,20 +411,10 @@ class SodaConfigGenerator:
     
     def generate_checks_yaml(self, tables: List[str], schema: str = None, 
                             strict_mode: bool = False) -> str:
-        """
-        Generate the complete checks.yml file dynamically
-        
-        Args:
-            tables: List of table names to generate checks for
-            schema: Database schema
-            strict_mode: Generate stricter checks
-            
-        Returns:
-            YAML checks configuration string
-        """
+
         all_checks = {}
         
-        print(f"\n🔍 Generating dynamic checks for {len(tables)} tables...")
+        print(f"Generating dynamic checks for {len(tables)} tables...")
         print("=" * 70)
         
         for table in tables:
@@ -488,25 +427,15 @@ class SodaConfigGenerator:
             
             all_checks[f'checks for {table}'] = checks
             
-            print(f"  ✓ Generated {len(checks)} checks for {table}")
+            print(f"Generated {len(checks)} checks for {table}")
         
         print("=" * 70)
-        print(f"✅ Check generation complete!\n")
+        print(f"Check generation complete!\n")
         
         return yaml.dump(all_checks, default_flow_style=False, sort_keys=False, width=1000)
     
     def save_configurations(self, output_dir: str, connection_config: Dict[str, str],
                           tables: List[str], schema: str = None, strict_mode: bool = False):
-        """
-        Generate and save both configuration.yml and checks.yml files
-        
-        Args:
-            output_dir: Directory to save configuration files
-            connection_config: Database connection parameters
-            tables: List of tables to generate checks for
-            schema: Database schema
-            strict_mode: Generate stricter checks
-        """
         os.makedirs(output_dir, exist_ok=True)
         
         # Generate and save configuration.yml
@@ -514,22 +443,21 @@ class SodaConfigGenerator:
         config_path = os.path.join(output_dir, 'configuration.yml')
         with open(config_path, 'w') as f:
             f.write(config_yaml)
-        print(f"✓ Saved configuration to: {config_path}")
+        print(f"Saved configuration to: {config_path}")
         
         # Generate and save checks.yml
         checks_yaml = self.generate_checks_yaml(tables, schema, strict_mode)
         checks_path = os.path.join(output_dir, 'checks.yml')
         with open(checks_path, 'w') as f:
             f.write(checks_yaml)
-        print(f"✓ Saved checks to: {checks_path}")
+        print(f"Saved checks to: {checks_path}")
         
         # Generate metadata report
         report_path = os.path.join(output_dir, 'discovery_report.txt')
         self.generate_discovery_report(report_path)
-        print(f"✓ Saved discovery report to: {report_path}")
+        print(f"Saved discovery report to: {report_path}")
     
     def generate_discovery_report(self, output_path: str):
-        """Generate a human-readable discovery report"""
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write("=" * 80 + "\n")
             f.write("DATA DISCOVERY REPORT\n")
@@ -540,7 +468,7 @@ class SodaConfigGenerator:
                 f.write(f"\nTABLE: {table_name}\n")
                 f.write("-" * 80 + "\n")
 
-                # 🛑 Skip if metadata was not captured due to empty/error table
+                # Skip if metadata was not captured due to empty/error table
                 if metadata is None:
                     f.write("[WARNING] No metadata collected (empty table or profiling error)\n\n")
                 
@@ -589,8 +517,8 @@ def example_postgres():
         data_source_name="postgres_prod"
     )
 
-    # 👇 Use your actual schema here (NOT public)
-    tables = generator.discover_datasets(schema='dqm',include_tables=['all_jobs_details_scrape'])
+ 
+    tables = generator.discover_datasets(schema='dqm',include_tables=['customer'])
 
     connection_config = {
         'type': 'postgres',
@@ -599,14 +527,14 @@ def example_postgres():
         'username': 'postgres',
         'password': 'admin',
         'database': 'postgres',
-        'schema': 'dqm'   # 👈 Must match
+        'schema': 'dqm'  
     }
 
     generator.save_configurations(
         output_dir='./soda_config',
         connection_config=connection_config,
         tables=tables,
-        schema='dqm',      # 👈 Must match
+        schema='dqm',      
         strict_mode=False
     )
 
@@ -674,10 +602,7 @@ def example_mysql():
 
 
 if __name__ == "__main__":
-    """
-    Run the appropriate example based on your database
-    """
-    
+       
     print("""
     ╔══════════════════════════════════════════════════════════════════════╗
     ║         Dynamic Soda Core Configuration Generator                    ║
@@ -692,24 +617,3 @@ if __name__ == "__main__":
     example_postgres()
     # example_snowflake()
     # example_mysql()
-    
-    print("""
-    
-    📋 To use this script:
-    
-    1. Install required packages:
-       pip install sqlalchemy pandas pyyaml pymysql psycopg2-binary snowflake-sqlalchemy
-    
-    2. Update connection string in the appropriate example function
-    
-    3. Uncomment and run the example for your database type
-    
-    4. The script will generate:
-       - configuration.yml (connection config)
-       - checks.yml (dynamic quality checks)
-       - discovery_report.txt (data profiling report)
-    
-    5. Run Soda scan:
-       soda scan -d your_datasource -c configuration.yml checks.yml
-    
-    """)
